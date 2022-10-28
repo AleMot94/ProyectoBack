@@ -1,22 +1,12 @@
-//Ejemplo crear servidor con REQUIRE ya no se usa.
-// se ejecuta con nodemon
-//nodemon lee los cambios que se producen
+const { conectar } = require("./servidor.js");
 
-const http = require("http");
+async function main() {
+  try {
+    const serv = await conectar(8080);
+    console.log(`conectado al puerto ${serv.address().port}`);
+  } catch (error) {
+    console.log("algo falló: " + error);
+  }
+}
 
-//function controlador(peticion, respuesta) {
-//  console.log(peticion);
-//  respuesta.end("todo piola");
-//}
-
-//const server = http.createServer(8080,controlador);
-
-const server = http.createServer((peticion, respuesta) => {
-  console.log(peticion);
-  respuesta.end("todo piola");
-});
-// si ponemos 0 en vez de 8080, elige un puerto al azar.
-server.listen(8080, (error, resultado) => {
-  if (error) console.log("algo fallo" + error);
-  else console.log("conectado al puerto 8080");
-});
+main();
