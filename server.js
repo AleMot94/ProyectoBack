@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 //app.engine("handlebars", engine());
 //app.set("view engine", "handlebars");
 const mensajes = [];
+const productos = [];
 
 //app.use("/", routerWeb);
 //app.use("/api/productos", routerApi);
@@ -27,9 +28,16 @@ server.on("error", (error) => console.log(`Error en servidor ${error}`));
 
 io.on("connection", (socket) => {
   console.log("Usuario conectado: " + socket.id);
+  // PRODUCTOS
+  socket.emit("productos", productos);
 
+  socket.on("actualizacionProductos", (producto) => {
+    productos.push(producto);
+    io.sockets.emit("productos", producto);
+  });
+
+  // CHAT
   socket.emit("mensajesActualizados", mensajes);
-
   socket.on("eventoMensaje", (mensaje) => {
     mensaje.fecha = new Date().toLocaleString();
     mensajes.push(mensaje);

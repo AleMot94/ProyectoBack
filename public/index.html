@@ -13,8 +13,29 @@
     <title>WEB SOCKET</title>
 </head>
 <body>
-    <h1 class="text-center">CHAT</h1>
+    <div class="d-flex flex-column container-sm">
+        <form id="formulario">
+            <div>
+                <label for="producto"><b>producto</b></label>
+                <input id="inputProducto" type="text" name="producto">
+            </div>
+            <div>
+                <label for="precio"><b>precio</b></label>
+                <input id="inputPrecio" type="text" name="precio">
+            </div>
+            <div>
+                <label for="thumbnail"><b>thumbnail</b></label>
+                <input id="inputThumbnail" type="text" name="thumbnail">
+            </div>
+            <button>Enviar</button>
+            
+        </form>
+        <div id="productos"></div>
+    </div>
+    
+
     <div id="contenedorChat" class="d-flex flex-column container-sm">
+        <h2 class="text-center">CHAT</h2>
         <input id="inputUsuario" type="text" placeholder="usuario">
         <input id="inputTexto" type="text" placeholder="texto">
         <button id="btnEnviar">enviar</button>
