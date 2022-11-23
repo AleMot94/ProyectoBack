@@ -4,18 +4,8 @@ const productos = [];
 const ruta = "./productos.txt";
 
 function controladorGetIndex(req, res) {
-  res.render("formulario");
+  res.render("formulario", { productos, hayPropductos: productos.length > 0 });
 }
-
-/*async function controladorGetProductos(req, res) {      // NO SE POR QUE NO FUNCIONA
-  try {
-    const file = await fs.promises.readFile(ruta, "utf-8");
-    const fileParse = JSON.parse(file);
-    res.render("productos", { fileParse, hayPropductos: fileParse.length > 0 });
-  } catch (error) {
-    console.log(error);
-  }
-}*/
 
 function controladorGetProductos(req, res) {
   res.render("productos", { productos, hayPropductos: productos.length > 0 });
@@ -33,6 +23,8 @@ async function controladorPostProductos(req, res) {
     console.log(error);
   }
 }
+
+function controladorChat(req, res) {}
 
 module.exports.controladorGetProductos = controladorGetProductos;
 module.exports.controladorPostProductos = controladorPostProductos;
