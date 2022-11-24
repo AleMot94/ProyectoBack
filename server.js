@@ -30,7 +30,6 @@ io.on("connection", (socket) => {
   console.log("Usuario conectado: " + socket.id);
   // PRODUCTOS
   socket.emit("productos", productos);
-
   socket.on("actualizacionProductos", (producto) => {
     productos.push(producto);
     io.sockets.emit("productos", producto);
